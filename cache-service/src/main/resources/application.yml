@@ -1,0 +1,26 @@
+ecommerce:
+    cache:
+        enabled: true
+
+spring:
+  application.name: cache-service
+  cache:
+    type: redis
+  data:
+    mongodb:
+      uri: mongodb://admin:1234@172.20.0.2:27017/product?retryWrites=true&authSource=admin
+    redis:
+      host: localhost
+      port: 6379
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration
+      - org.springframework.boot.autoconfigure.data.redis.RedisRepositoriesAutoConfiguration
+
+server:
+    port: 8085
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka

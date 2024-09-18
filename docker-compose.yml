@@ -1,0 +1,23 @@
+services:
+  mongo:
+    image: mongo
+    container_name: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: 1234
+    networks:
+      static-network:
+        ipv4_address: 172.20.0.2
+
+  redis:
+    container_name: redis
+    image: redis
+    ports:
+      - "6379:6379"
+
+networks:
+  static-network:
+    ipam:
+      config:
+        - subnet: 172.20.0.0/28

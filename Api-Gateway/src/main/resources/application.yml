@@ -1,0 +1,39 @@
+spring:
+  application.name: Api-Gateway
+  cloud:
+    gateway:
+      routes:
+        - id: product-service
+          uri: lb://product-service
+          predicates:
+            - Path=/api/v1/product/**
+        - id: Auth
+          uri: lb://Auth
+          predicates:
+            - Path=/api/v1/auth/**
+        - id: cache-service
+          uri: lb://cache-service
+          predicates:
+            - Path=/api/v1/cache/**
+        - id: recommendation-service
+          uri: lb://recommendation-service
+          predicates:
+            - Path=/api/v1/recommendation/**
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/api/v1/user/**
+        - id: discovery
+          uri: lb://discovery
+          predicates:
+            - Path=/eureka/web
+          filters:
+            - SetPath=/web
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
+server:
+  port: 8083

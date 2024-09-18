@@ -1,0 +1,24 @@
+auth:
+  api-security:
+    enabled: true
+    jwt:
+      secret: auth
+      expiration-ms: 100000000
+
+server:
+  port: 8080
+
+spring:
+  output:
+    ansi:
+      enabled: always
+  application:
+    name: Auth
+  data:
+    mongodb:
+      uri: mongodb://admin:1234@172.20.0.2:27017/auth?retryWrites=true&authSource=admin
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
